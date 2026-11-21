@@ -41,3 +41,15 @@ def workspace_points(L1, L2, steps=60):
             t2 = -math.pi + 2 * math.pi * j / (steps - 1)
             pts.append(forward_kinematics(t1, t2, L1, L2))
     return pts
+
+def line_trajectory(start, end, L1, L2, n=60, elbow="up"):
+    path = []
+    for k in range(n):
+        s = k / (n - 1)
+        x = start[0] + s * (end[0] - start[0])
+        y = start[1] + s * (end[1] - start[1])
+        sol = inverse_kinematics(x, y, L1, L2, elbow)
+        if sol is None:
+            raise ValueError("Point is outside the workspace")
+        path.append(sol)
+    return path
