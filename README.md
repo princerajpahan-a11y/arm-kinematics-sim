@@ -23,3 +23,7 @@ jacobian and singularity analysis, joint angle plots, joint limits.
 
 Along the test path, |det J| stays well above zero, so the arm stays away from singularities.
 
+![singularity map](docs/singularity_map.png)
+
+|det J| drops to zero at the outer and inner edges of the workspace, where the arm is fully stretched or folded.
+
