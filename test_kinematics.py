@@ -24,6 +24,17 @@ def test_unreachable():
     assert inverse_kinematics(3, 0, L1, L2) is None
     assert inverse_kinematics(0.1, 0, L1, L2) is None
 
+def test_singularity():
+    assert abs(jacobian_determinant(0.3, 0.0, L1, L2)) < 1e-9
+
+def test_jacobian_matches_numeric():
+    t1, t2, h = 0.4, 0.9, 1e-6
+    J = jacobian(t1, t2, L1, L2)
+    xa, ya = forward_kinematics(t1 + h, t2, L1, L2)
+    xb, yb = forward_kinematics(t1 - h, t2, L1, L2)
+    assert abs((xa - xb) / (2 * h) - J[0][0]) < 1e-5
+    assert abs((ya - yb) / (2 * h) - J[1][0]) < 1e-5    
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("test_"):

@@ -53,3 +53,14 @@ def line_trajectory(start, end, L1, L2, n=60, elbow="up"):
             raise ValueError("Point is outside the workspace")
         path.append(sol)
     return path
+
+def jacobian(theta1, theta2, L1, L2):
+    s1, c1 = math.sin(theta1), math.cos(theta1)
+    s12, c12 = math.sin(theta1 + theta2), math.cos(theta1 + theta2)
+    return [[-L1 * s1 - L2 * s12, -L2 * s12],
+            [L1 * c1 + L2 * c12, L2 * c12]]
+
+
+def jacobian_determinant(theta1, theta2, L1, L2):
+    J = jacobian(theta1, theta2, L1, L2)
+    return J[0][0] * J[1][1] - J[0][1] * J[1][0]
