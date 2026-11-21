@@ -18,3 +18,8 @@ python animate.py
 ## Next steps
 jacobian and singularity analysis, joint angle plots, joint limits.
 
+## Results
+![joint angles](docs/joint_angles.png)
+
+Along the test path, |det J| stays well above zero, so the arm stays away from singularities.
+
