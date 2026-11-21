@@ -3,6 +3,8 @@
 A from-scratch Python implementation of forward and inverse kinematics
 for a planar 2-link robot arm.
 
+![demo](docs/demo.gif)
+
 ## Features so far
 - Forward and inverse kinematics (elbow up and down)
 - Reachability check and workspace sampling
@@ -14,6 +16,5 @@ pip install matplotlib numpy
 python animate.py
 
 ## Next steps
-Inverse kinematics, workspace plot, trajectory animation, Jacobian analysis.
+jacobian and singularity analysis, joint angle plots, joint limits.
 
-![demo](docs/demo.gif)
