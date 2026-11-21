@@ -31,7 +31,13 @@ def inverse_kinematics(x, y, L1, L2, elbow="up"):
     theta1 = math.atan2(y, x) - math.atan2(k2, k1)
     return theta1, theta2
 
-sol = inverse_kinematics(1.2, 0.3, 1.0, 0.8, "up")
-print(math.degrees(sol[0]), math.degrees(sol[1]))
-print(forward_kinematics(sol[0], sol[1], 1.0, 0.8))
 
+
+def workspace_points(L1, L2, steps=60):
+    pts = []
+    for i in range(steps):
+        t1 = -math.pi + 2 * math.pi * i / (steps - 1)
+        for j in range(steps):
+            t2 = -math.pi + 2 * math.pi * j / (steps - 1)
+            pts.append(forward_kinematics(t1, t2, L1, L2))
+    return pts
